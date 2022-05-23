@@ -15,4 +15,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String comment;
+    @JoinColumn(name = "joke_id", referencedColumnName ="id",nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Joke jokeId;
 }
