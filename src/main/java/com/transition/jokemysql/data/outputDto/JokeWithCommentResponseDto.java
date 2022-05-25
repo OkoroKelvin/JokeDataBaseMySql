@@ -2,13 +2,12 @@ package com.transition.jokemysql.data.outputDto;
 
 import com.transition.jokemysql.data.inputDto.ApiFieldError;
 import com.transition.jokemysql.data.inputDto.PageInfo;
-import com.transition.jokemysql.data.model.Joke;
 
 import java.util.List;
 
 public class JokeWithCommentResponseDto extends StandardResponseDto{
-    private JokeWithCommentDto jokeWithComment;
-    private List<JokeWithCommentDto> jokeWithComments;
+    private JokeComposite jokeWithComment;
+    private List<JokeComposite> jokeWithComments;
 
 
 
@@ -25,40 +24,40 @@ public class JokeWithCommentResponseDto extends StandardResponseDto{
         this.status = status;
     }
 
-    public JokeWithCommentResponseDto(List<JokeWithCommentDto> jokeWithComments, Status status, PageInfo page){
+    public JokeWithCommentResponseDto(List<JokeComposite> jokeWithComments, Status status, PageInfo page){
         super(status);
         this.jokeWithComments = jokeWithComments;
         this.page = page;
     }
 
-    public JokeWithCommentResponseDto(JokeWithCommentDto jokeWithComment, Status status) {
+    public JokeWithCommentResponseDto(JokeComposite jokeWithComment, Status status) {
         super(status);
         this.jokeWithComment = jokeWithComment;
     }
 
-    public JokeWithCommentResponseDto(Status status, JokeWithCommentDto jokeWithComment) {
+    public JokeWithCommentResponseDto(Status status, JokeComposite jokeWithComment) {
         super(status);
         this.jokeWithComment= jokeWithComment;
     }
 
-    public JokeWithCommentResponseDto(List<JokeWithCommentDto> jokeWithComments, Status status) {
+    public JokeWithCommentResponseDto(List<JokeComposite> jokeWithComments, Status status) {
         super(status);
         this.jokeWithComments = jokeWithComments;
     }
 
-    public JokeWithCommentDto getJokeWithComment() {
+    public JokeComposite getJokeWithComment() {
         return jokeWithComment;
     }
 
-    public void setJokeWithComment(JokeWithCommentDto jokeWithComment) {
+    public void setJokeWithComment(JokeComposite jokeWithComment) {
         this.jokeWithComment = jokeWithComment;
     }
 
-    public List<JokeWithCommentDto> getJokeWithComments() {
+    public List<JokeComposite> getJokeWithComments() {
         return jokeWithComments;
     }
 
-    public void setJokeWithComments(List<JokeWithCommentDto> jokeWithComments) {
+    public void setJokeWithComments(List<JokeComposite> jokeWithComments) {
         this.jokeWithComments = jokeWithComments;
     }
 }

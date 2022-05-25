@@ -2,13 +2,12 @@ package com.transition.jokemysql.data.outputDto;
 
 import com.transition.jokemysql.data.model.Comment;
 import com.transition.jokemysql.data.model.Joke;
-import lombok.Data;
 
 import java.util.List;
 
 
 
-public class JokeWithCommentDto {
+public class JokeComposite {
     private Joke joke;
     private List<Comment> comment;
 
@@ -32,7 +31,7 @@ public class JokeWithCommentDto {
 
     @Override
     public String toString() {
-        return "JokeWithCommentDto{" +
+        return "JokeComposite{" +
                 "joke=" + joke +
                 ", comment=" + comment +
                 '}';
