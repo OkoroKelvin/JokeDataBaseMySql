@@ -54,4 +54,8 @@ public class CommentServiceImpl implements CommentService {
 
         return  new CommentResponseDto(Status.SUCCESS);
     }
+
+    public Comment findCommentById(Integer commentId) {
+        return commentRepository.findById(commentId).get();
+    }
 }

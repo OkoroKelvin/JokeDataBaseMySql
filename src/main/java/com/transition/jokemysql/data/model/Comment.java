@@ -20,4 +20,6 @@ public class Comment {
     @JoinColumn(name = "joke_id", referencedColumnName ="id",nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Joke jokeId;
+
+
 }

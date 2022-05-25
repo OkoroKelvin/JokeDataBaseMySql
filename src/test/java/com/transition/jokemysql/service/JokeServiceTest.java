@@ -4,9 +4,7 @@ import com.transition.jokemysql.data.inputDto.CommentDeleteDto;
 import com.transition.jokemysql.data.inputDto.CommentInputDto;
 import com.transition.jokemysql.data.inputDto.JokeInputDto;
 import com.transition.jokemysql.data.model.Joke;
-import com.transition.jokemysql.data.outputDto.CommentResponseDto;
-import com.transition.jokemysql.data.outputDto.JokeResponseDto;
-import com.transition.jokemysql.data.outputDto.Status;
+import com.transition.jokemysql.data.outputDto.*;
 import com.transition.jokemysql.data.repository.CommentRepository;
 import com.transition.jokemysql.data.repository.JokeRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -17,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -183,6 +182,10 @@ class JokeServiceTest {
     @Test
     @DisplayName("Find all Jokes with its Comment")
     void testThatAllJokesCanBeReadWithItsComment(){
-        jokeService.findAllJokesWithItsComment();
+        JokeWithCommentResponseDto responseDto = jokeService.findAllJokesWithItsComment();
+        List<JokeWithCommentDto> allJokes = responseDto.getJokeWithComments();
+        for(JokeWithCommentDto jok : allJokes){
+            System.out.println(jok);
+        }
     }
 }
