@@ -20,4 +20,6 @@ public interface JokeService {
     JokeResponseDto findAllJokesByLeastToBestLikes();
 
    JokeCompositeResponseDto findAllJokesWithItsComment();
+
+    JokeResponseDto findAllJokes();
 }

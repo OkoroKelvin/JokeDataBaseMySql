@@ -179,4 +179,12 @@ class JokeServiceTest {
         List<JokeComposite> allJokes = responseDto.getJokeWithComments();
         allJokes.forEach(System.out::println);
     }
+
+    @Test
+    @DisplayName("Find all Jokes ")
+    void testThatAllJokesCanBeSeen(){
+        JokeResponseDto responseDto = jokeService.findAllJokes();
+        List<Joke> allJokes = responseDto.getJokes();
+        allJokes.forEach(System.out::println);
+    }
 }

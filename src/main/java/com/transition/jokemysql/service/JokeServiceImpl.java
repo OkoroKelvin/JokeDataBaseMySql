@@ -109,4 +109,10 @@ public class JokeServiceImpl implements  JokeService {
         );
         return new JokeCompositeResponseDto(jokeWithComments,Status.SUCCESS);
    }
+
+    @Override
+    public JokeResponseDto findAllJokes() {
+       List<Joke> jokes =  jokeRepository.findAll();
+        return new JokeResponseDto(jokes,Status.SUCCESS);
+    }
 }

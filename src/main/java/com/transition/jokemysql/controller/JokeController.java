@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3001/")
+@CrossOrigin(origins = "http://localhost:3002/")
 @RestController
 @RequestMapping("/api/v1/")
 public class JokeController {
@@ -32,9 +32,9 @@ public class JokeController {
         return jokeService.findAllJokesWithItsComment();
     }
 
-    @GetMapping("/joke")
-    public List<Joke> getAllJoke(){
-        return jokeRepository.findAll();
+    @GetMapping("/onlyJoke")
+    public JokeResponseDto getAllJokeOnly(){
+        return jokeService.findAllJokes();
     }
 
     @PostMapping("/jokes")
