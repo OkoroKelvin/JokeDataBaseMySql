@@ -7,10 +7,7 @@ import com.transition.jokemysql.data.model.Joke;
 import com.transition.jokemysql.data.outputDto.*;
 import com.transition.jokemysql.data.repository.CommentRepository;
 import com.transition.jokemysql.data.repository.JokeRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -39,12 +36,14 @@ class JokeServiceTest {
     JokeInputDto joke1;
     JokeInputDto joke2;
 
+
     private
+
 
     @BeforeEach
     void setUp() {
-        jokeRepository.deleteAll();
         commentRepository.deleteAll();
+        jokeRepository.deleteAll();
 
 
         jokeRepository.save(Joke.builder().content("Funny")
@@ -82,11 +81,6 @@ class JokeServiceTest {
         input3.setJokeId(2);
         input3.setWords("cool");
         commentService.createComment(input3 );
-
-
-
-
-
     }
 
     @AfterEach
@@ -101,15 +95,15 @@ class JokeServiceTest {
         JokeResponseDto response = jokeService.saveJoke(joke2);
         assertNotNull(response.getJoke());
         assertEquals(response.getJoke().getContent(),"Just Dream");
-        assertThat(jokeRepository.findAll()).hasSize(4);
+        assertThat(jokeRepository.findAll()).hasSize(6);
     }
 
     @Test
     @DisplayName("Test That Joke can be deleted")
     void testThatJokeCanBeDeleted(){
-        assertEquals(jokeRepository.findAll().size(),4);
+        assertEquals(jokeRepository.findAll().size(),5);
         jokeService.removeJoke(4);
-        assertEquals(jokeRepository.findAll().size(),3);
+        assertEquals(jokeRepository.findAll().size(),4);
     }
 
     @Test
@@ -119,9 +113,9 @@ class JokeServiceTest {
         jokeService.likeJoke(4);
         jokeService.likeJoke(4);
        JokeResponseDto response = jokeService.likeJoke(4);
-        assertEquals(response.getJoke().getLikes(),4);
+        assertEquals(response.getJoke().getLikes(),11);
         JokeResponseDto response2 = jokeService.likeJoke(1);
-        assertEquals(response2.getJoke().getLikes(),1);
+        assertEquals(response2.getJoke().getLikes(),4);
     }
 
     @Test
@@ -150,7 +144,7 @@ class JokeServiceTest {
         inputDto.setWords("I like it");
         CommentResponseDto response = commentService.createComment(inputDto );
         assertEquals(response.getComment().getComment(),"I like it");
-        assertEquals(commentRepository.findAll().size(),1);
+        assertEquals(commentRepository.findAll().size(),4);
 
 
         CommentInputDto inputDto2 = new CommentInputDto();
@@ -158,14 +152,14 @@ class JokeServiceTest {
         inputDto2.setWords("Lively Joke");
         CommentResponseDto response2 = commentService.createComment(inputDto2);
         assertEquals(response2.getComment().getComment(),"Lively Joke");
-        assertEquals(commentRepository.findAll().size(),2);
+        assertEquals(commentRepository.findAll().size(),5);
 
         CommentInputDto inputDto3 = new CommentInputDto();
         inputDto3.setJokeId(1);
         inputDto3.setWords("Excellent vibe");
         CommentResponseDto response3 = commentService.createComment(inputDto3);
         assertEquals(response3.getComment().getComment(),"Excellent vibe");
-        assertEquals(commentRepository.findAll().size(),3);
+        assertEquals(commentRepository.findAll().size(),6);
     }
 
     @Test
@@ -181,10 +175,8 @@ class JokeServiceTest {
     @Test
     @DisplayName("Find all Jokes with its Comment")
     void testThatAllJokesCanBeReadWithItsComment(){
-        JokeWithCommentResponseDto responseDto = jokeService.findAllJokesWithItsComment();
+        JokeCompositeResponseDto responseDto = jokeService.findAllJokesWithItsComment();
         List<JokeComposite> allJokes = responseDto.getJokeWithComments();
-        for(JokeComposite jok : allJokes){
-            System.out.println(jok);
-        }
+        allJokes.forEach(System.out::println);
     }
 }

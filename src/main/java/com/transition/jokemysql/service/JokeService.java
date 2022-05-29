@@ -1,11 +1,8 @@
 package com.transition.jokemysql.service;
 
 import com.transition.jokemysql.data.inputDto.JokeInputDto;
-import com.transition.jokemysql.data.model.Joke;
 import com.transition.jokemysql.data.outputDto.JokeResponseDto;
-import com.transition.jokemysql.data.outputDto.JokeWithCommentResponseDto;
-import com.transition.jokemysql.data.repository.JokeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.transition.jokemysql.data.outputDto.JokeCompositeResponseDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,5 +19,5 @@ public interface JokeService {
 
     JokeResponseDto findAllJokesByLeastToBestLikes();
 
-   JokeWithCommentResponseDto findAllJokesWithItsComment();
+   JokeCompositeResponseDto findAllJokesWithItsComment();
 }

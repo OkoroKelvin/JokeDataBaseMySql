@@ -25,8 +25,6 @@ public class Joke {
 
     private LocalDateTime createdDate;
     private Integer likes;
-
-
     public void like() {
         this.likes +=1;
     }

@@ -18,7 +18,7 @@ public class Comment {
     private Integer id;
     private String comment;
     @JoinColumn(name = "joke_id", referencedColumnName ="id",nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Joke jokeId;
 
 

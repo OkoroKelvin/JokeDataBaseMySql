@@ -5,7 +5,7 @@ import com.transition.jokemysql.data.model.Comment;
 import com.transition.jokemysql.data.model.Joke;
 import com.transition.jokemysql.data.outputDto.JokeComposite;
 import com.transition.jokemysql.data.outputDto.JokeResponseDto;
-import com.transition.jokemysql.data.outputDto.JokeWithCommentResponseDto;
+import com.transition.jokemysql.data.outputDto.JokeCompositeResponseDto;
 import com.transition.jokemysql.data.outputDto.Status;
 import com.transition.jokemysql.data.repository.CommentRepository;
 import com.transition.jokemysql.data.repository.JokeRepository;
@@ -49,7 +49,8 @@ public class JokeServiceImpl implements  JokeService {
 
     public Joke findJokeById(Integer jokeId) {
         Optional<Joke> jokeRepo = jokeRepository.findById(jokeId);
-        return jokeRepo.get();
+        Joke foundJoke = jokeRepo.get();
+        return foundJoke;
     }
 
     @Override
@@ -84,7 +85,7 @@ public class JokeServiceImpl implements  JokeService {
     }
 
    @Override
-    public JokeWithCommentResponseDto findAllJokesWithItsComment() {
+    public JokeCompositeResponseDto findAllJokesWithItsComment() {
         List<Joke> jokes = jokeRepository.findAll();
         List<JokeComposite> jokeWithComments = new ArrayList<>();
 
@@ -106,6 +107,6 @@ public class JokeServiceImpl implements  JokeService {
             }
         }
         );
-        return new JokeWithCommentResponseDto(jokeWithComments,Status.SUCCESS);
+        return new JokeCompositeResponseDto(jokeWithComments,Status.SUCCESS);
    }
 }
