@@ -20,8 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3002" +
-        "/")
+@CrossOrigin(origins = "https://front-end-database.herokuapp.com/")
 @RestController
 @RequestMapping("/api/v1/")
 public class JokeController {
