@@ -1,6 +1,7 @@
 package com.transition.jokemysql.service;
 
 import com.transition.jokemysql.data.inputDto.JokeInputDto;
+import com.transition.jokemysql.data.outputDto.CommentResponseDto;
 import com.transition.jokemysql.data.outputDto.JokeResponseDto;
 import com.transition.jokemysql.data.outputDto.JokeCompositeResponseDto;
 import org.springframework.stereotype.Service;
@@ -22,4 +23,8 @@ public interface JokeService {
    JokeCompositeResponseDto findAllJokesWithItsComment();
 
     JokeResponseDto findAllJokes();
+
+    JokeResponseDto findJokeByItsId(Integer jokeId);
+
+
 }

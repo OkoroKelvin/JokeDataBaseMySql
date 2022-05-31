@@ -3,10 +3,7 @@ package com.transition.jokemysql.service;
 import com.transition.jokemysql.data.inputDto.JokeInputDto;
 import com.transition.jokemysql.data.model.Comment;
 import com.transition.jokemysql.data.model.Joke;
-import com.transition.jokemysql.data.outputDto.JokeComposite;
-import com.transition.jokemysql.data.outputDto.JokeResponseDto;
-import com.transition.jokemysql.data.outputDto.JokeCompositeResponseDto;
-import com.transition.jokemysql.data.outputDto.Status;
+import com.transition.jokemysql.data.outputDto.*;
 import com.transition.jokemysql.data.repository.CommentRepository;
 import com.transition.jokemysql.data.repository.JokeRepository;
 import com.transition.jokemysql.exception.ApplicationException;
@@ -57,6 +54,10 @@ public class JokeServiceImpl implements  JokeService {
     public JokeResponseDto removeJoke(Integer jokeId) {
         try{
             Joke foundJoke = findJokeById(jokeId);
+            List<Comment> comments = commentRepository.findCommentByJokeId(jokeId);
+            if(comments!=null){
+                commentRepository.deleteAll(comments);
+            }
             jokeRepository.delete(foundJoke);
             return new JokeResponseDto(Status.SUCCESS);
         }catch (Exception e) {
@@ -114,5 +115,14 @@ public class JokeServiceImpl implements  JokeService {
     public JokeResponseDto findAllJokes() {
        List<Joke> jokes =  jokeRepository.findAll();
         return new JokeResponseDto(jokes,Status.SUCCESS);
+    }
+
+    @Override
+    public JokeResponseDto findJokeByItsId(Integer jokeId) {
+        Joke joke = findJokeById(jokeId);
+        if(joke==null){
+            throw  new ApplicationException("Joke not found");
+        }
+        return  new JokeResponseDto(joke,Status.SUCCESS);
     }
 }
