@@ -84,6 +84,12 @@ public class JokeController {
         return commentService.getAllCommentOfAJoke(id);
     }
 
+    @DeleteMapping("jokes/comment/{id}")
+    public CommentResponseDto deleteCommentById(@PathVariable Integer id){
+        return commentService.deleteCommentByItsId(id);
+
+    }
+
 
 
 

@@ -187,4 +187,6 @@ class JokeServiceTest {
         List<Joke> allJokes = responseDto.getJokes();
         allJokes.forEach(System.out::println);
     }
+
+
 }

@@ -79,6 +79,14 @@ public class CommentServiceImpl implements CommentService {
         return new CommentResponseDto(comments,Status.SUCCESS);
     }
 
+    @Override
+    public CommentResponseDto deleteCommentByItsId(Integer id) {
+        Optional<Comment> comment = commentRepository.findById(id);
+        Comment foundComment= comment.get();
+        commentRepository.delete(foundComment);
+        return new CommentResponseDto(Status.SUCCESS);
+    }
+
     public Comment findCommentById(Integer commentId) {
         return commentRepository.findById(commentId).get();
     }

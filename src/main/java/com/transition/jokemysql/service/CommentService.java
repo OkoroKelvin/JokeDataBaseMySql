@@ -15,4 +15,6 @@ public interface CommentService {
     CommentResponseDto createJokeComment(Integer id, JokeCommentInputDto jokeInputDto);
 
     CommentResponseDto getAllCommentOfAJoke(Integer jokeId);
+
+    CommentResponseDto deleteCommentByItsId(Integer id);
 }
