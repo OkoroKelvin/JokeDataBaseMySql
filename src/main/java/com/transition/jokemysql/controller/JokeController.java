@@ -80,7 +80,6 @@ public class JokeController {
         return jokeService.likeJoke(id);
     }
 
-//    http://localhost:8080/api/v1/jokes/comment
     @GetMapping("jokes/comment/{id}")
     public CommentResponseDto getAllJokeComment(@PathVariable Integer id){
         return commentService.getAllCommentOfAJoke(id);
